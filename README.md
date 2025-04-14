@@ -1,5 +1,3 @@
-# utl-select-the-top-five-ages-using-sql-sas-r-python-excel
-Select the top 5 ages using sql sas r python excel 
     %let pgm=utl-select-the-top-five-ages-using-sql-sas-r-python-excel;
 
     %stop_submission;
@@ -14,6 +12,9 @@ Select the top 5 ages using sql sas r python excel
           4 python sql limit clase
           5 excel sql limit clause
           6 related repos
+          7 proc univariate
+            mkeintz@outlook.com Mark Keintz
+            louisesquibbhadden@gmail.com Louise Hadden
 
     github
     https://tinyurl.com/vzut72ux
@@ -37,7 +38,6 @@ Select the top 5 ages using sql sas r python excel
     | .__/|_|  \___/|_.__/|_|\___|_| |_| |_|
     |_|
     */
-
 
     /************************************************************************************************************/
     /*     INPUT                    |                 PROCESS                               |    OUTPUT         */
@@ -424,7 +424,7 @@ Select the top 5 ages using sql sas r python excel
     https://github.com/rogerjdeangelis/utl-top-n-values-by-patient-using-proc-univariate_and_means-
     https://github.com/rogerjdeangelis/utl_create_flag_for_top_5_percent_members_by_total_cost_for_every_group
     https://github.com/rogerjdeangelis/utl-create-equally-spaced-values-using-partitioning-in-sql-wps-r-python
-    https://github.com/rogerjdeangelis/utl-create-primary-key-for-duplicated-records-using-sql-partitionaling-and-pivot-wide-sas-python-r
+    https://github.com/rogerjdeangelis/utl-create-primary-key-for-duplicated-records-using-sql-partitionaling-and-pivot-wide-sas-python-
     https://github.com/rogerjdeangelis/utl-find-first-n-observations-per-category-using-proc-sql-partitioning
     https://github.com/rogerjdeangelis/utl-flag-second-duplicate-using-base-sas-and-sql-sas-python-and-r-partitioning-multi-language
     https://github.com/rogerjdeangelis/utl-incrementing-by-one-for-each-new-group-of-records-sas-r-python-sql-partitioning
@@ -437,6 +437,35 @@ Select the top 5 ages using sql sas r python excel
     https://github.com/rogerjdeangelis/utl-transposing-words-into-sentences-using-sql-partitioning-in-r-and-python
     https://github.com/rogerjdeangelis/utl-using-sql-in-wps-r-python-select-the-four-youngest-male-and-female-students-partitioning
 
+
+    /*____                                      _                 _       _
+    |___  |  _ __  _ __ ___   ___   _   _ _ __ (_)_   ____ _ _ __(_) __ _| |_ ___
+       / /  | `_ \| `__/ _ \ / __| | | | | `_ \| \ \ / / _` | `__| |/ _` | __/ _ \
+      / /   | |_) | | | (_) | (__  | |_| | | | | |\ V / (_| | |  | | (_| | ||  __/
+     /_/    | .__/|_|  \___/ \___|  \__,_|_| |_|_| \_/ \__,_|_|  |_|\__,_|\__\___|
+            |_|
+    */
+
+    ods exclude where=(_path_ ? 'Univariate');
+    ods output extremeobs=want (keep=high name_high
+                                rename=(high=age name_high=name));
+    proc univariate data=sashelp.class (keep=name age) nextrobs=5   ;
+      var age;
+      id name;
+    run;
+    ods exclude none;
+    ods output clear;
+
+
+    /**************************************************************************************************************************/
+    /* AGE    NAME                                                                                                            */
+    /*                                                                                                                        */
+    /*  15    Janet        m                                                                                                   */
+    /*  15    Mary                                                                                                            */
+    /*  15    Ronald                                                                                                          */
+    /*  15    William                                                                                                         */
+    /*  16    Philip                                                                                                          */
+    /**************************************************************************************************************************/
     /*              _
       ___ _ __   __| |
      / _ \ `_ \ / _` |
@@ -444,3 +473,4 @@ Select the top 5 ages using sql sas r python excel
      \___|_| |_|\__,_|
 
     */
+
