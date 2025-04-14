@@ -12,6 +12,9 @@ Select the top 5 ages using sql sas r python excel
       4 python sql limit clase
       5 excel sql limit clause
       6 related repos
+      7 proc univariate
+        mkeintz@outlook.com Mark Keintz
+        louisesquibbhadden@gmail.com Louise Hadden
 
 github
 https://tinyurl.com/vzut72ux
@@ -435,6 +438,35 @@ https://github.com/rogerjdeangelis/utl-transposing-rows-to-columns-using-proc-sq
 https://github.com/rogerjdeangelis/utl-transposing-words-into-sentences-using-sql-partitioning-in-r-and-python
 https://github.com/rogerjdeangelis/utl-using-sql-in-wps-r-python-select-the-four-youngest-male-and-female-students-partitioning
 
+
+/*____                                      _                 _       _
+|___  |  _ __  _ __ ___   ___   _   _ _ __ (_)_   ____ _ _ __(_) __ _| |_ ___
+   / /  | `_ \| `__/ _ \ / __| | | | | `_ \| \ \ / / _` | `__| |/ _` | __/ _ \
+  / /   | |_) | | | (_) | (__  | |_| | | | | |\ V / (_| | |  | | (_| | ||  __/
+ /_/    | .__/|_|  \___/ \___|  \__,_|_| |_|_| \_/ \__,_|_|  |_|\__,_|\__\___|
+        |_|
+*/
+
+ods exclude where=(_path_ ? 'Univariate');
+ods output extremeobs=want (keep=high name_high
+                            rename=(high=age name_high=name));
+proc univariate data=sashelp.class (keep=name age) nextrobs=5   ;
+  var age;
+  id name;
+run;
+ods exclude none;
+ods output clear;
+
+
+/**************************************************************************************************************************/
+/* AGE    NAME                                                                                                            */
+/*                                                                                                                        */
+/*  15    Janet        m                                                                                                   */
+/*  15    Mary                                                                                                            */
+/*  15    Ronald                                                                                                          */
+/*  15    William                                                                                                         */
+/*  16    Philip                                                                                                          */
+/**************************************************************************************************************************/
 /*              _
   ___ _ __   __| |
  / _ \ `_ \ / _` |
@@ -442,3 +474,4 @@ https://github.com/rogerjdeangelis/utl-using-sql-in-wps-r-python-select-the-four
  \___|_| |_|\__,_|
 
 */
+
